@@ -1,6 +1,6 @@
 import React from "react";
 import img1 from "../../assets/harmony-2way-364x364.jpg";
-import { IoAccessibility } from "react-icons/io5";
+import { IoPlay } from "react-icons/io5";
 const Products = () => {
   // lg:h-[641px]
   return (
@@ -72,13 +72,13 @@ const Products = () => {
             <h2 className="card-title">New album is released!</h2>
             <p>Click the button to listen on Spotiwhy app.</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Listen</button>
+              <button className="btn btn-primary ">Listen</button>
             </div>
           </div>
         </div>
       </div>
-      <button className="btn btn-info rounded-lg w-full text-2xl text-white">
-        See More
+      <button className="btn btn-info w-full text-2xl text-white rounded-b-lg rounded-t-none">
+        See More <IoPlay />
       </button>
     </section>
   );
