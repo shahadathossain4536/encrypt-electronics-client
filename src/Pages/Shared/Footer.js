@@ -79,7 +79,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-b-2 py-10 mx-14"></div>
-      <p className="text-center pt-10 text-white">
+      <p className="text-center pt-10 mb-5 text-white">
         Copyright © Encrypt Electronics. All Rights Reserved
       </p>
     </footer>
