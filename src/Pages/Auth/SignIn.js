@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
 import {
+  useSignInWithEmailAndPassword,
   useSignInWithFacebook,
   useSignInWithGithub,
   useSignInWithGoogle,
@@ -14,13 +15,21 @@ const SignIn = () => {
     useSignInWithFacebook(auth);
   const [signInWithGithub, githubUser, githubLoading, githubError] =
     useSignInWithGithub(auth);
+
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
   const {
     register,
     formState: { errors },
+    reset,
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    signInWithEmailAndPassword(data.email, data.password);
+    reset();
+    console.log(data);
+  };
   return (
     <div className="mx-auto my-12">
       <div className="w-full max-w-md p-8 rounded-xl dark:bg-gray-900 dark:text-gray-100 shadow-2xl">

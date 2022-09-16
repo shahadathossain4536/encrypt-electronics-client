@@ -1,7 +1,16 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.svg";
+import auth from "../../firebase.init";
+
 const Navbar = ({ children }) => {
+  const [user, loading, error] = useAuthState(auth);
+  const logout = () => {
+    signOut(auth);
+  };
+  console.log("navbar user clg", user);
   const menuItem = (
     <>
       <li>
@@ -14,11 +23,38 @@ const Navbar = ({ children }) => {
           About
         </NavLink>
       </li>
-      <li>
-        <Link to="/signin">
-          <button className="btn text-white">SingIn</button>
-        </Link>
-      </li>
+      {user ? (
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src="https://placeimg.com/80/80/people" />
+            </div>
+          </label>
+          <ul
+            tabIndex={0}
+            className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <a className="justify-between">
+                Profile
+                <span className="badge">New</span>
+              </a>
+            </li>
+            <li>
+              <a>Settings</a>
+            </li>
+            <li>
+              <button onClick={logout}>Logout</button>
+            </li>
+          </ul>
+        </div>
+      ) : (
+        <li>
+          <button className="btn btn-accent rounded-md">
+            <Link to="signin">SingIn</Link>
+          </button>
+        </li>
+      )}
     </>
   );
   return (
